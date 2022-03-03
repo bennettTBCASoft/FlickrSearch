@@ -46,13 +46,18 @@ extension FlickrPhotosViewController {
   
   override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     switch kind {
+    
+    // If you weren’t using the flow layout, you wouldn’t get this behavior for free.
     case UICollectionView.elementKindSectionHeader:
+      
       let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(FlickrPhotoHeaderView.self)", for: indexPath)
-      guard let typedHeaderView = headerView as? FlickrPhotoHeaderView
-      else { return headerView }
+      
+      guard let typedHeaderView = headerView as? FlickrPhotoHeaderView else { return headerView }
       let searchTerm = searches[indexPath.section].searchTerm
       typedHeaderView.titleLabel.text = searchTerm
+      
       return typedHeaderView
+      
     default:
       assert(false, "Invalid element")
     }

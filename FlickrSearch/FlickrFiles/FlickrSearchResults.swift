@@ -8,5 +8,5 @@ import Foundation
 
 struct FlickrSearchResults {
   let searchTerm: String  //搜索詞
-  let searchResults: [FlickrPhoto]  // 搜索找到的結果
+  var searchResults: [FlickrPhoto]  // 搜索找到的結果
 }

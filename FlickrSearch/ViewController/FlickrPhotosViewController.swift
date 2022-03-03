@@ -41,9 +41,19 @@ class FlickrPhotosViewController: UICollectionViewController {
       
       navigationItem.setRightBarButtonItems(items, animated: true)
     }
+    
+    
+    
   }
   var searches: [FlickrSearchResults] = []  // serches 是一個數組，用來追蹤每一個搜尋
   let flickr = Flickr() // 是對搜尋的對象一個引用
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    collectionView.dragDelegate = self
+    collectionView.dragInteractionEnabled = true
+    collectionView.dropDelegate = self
+  }
   
   @IBAction func shareButtonTapped(_ sender: UIBarButtonItem) {
     guard !searches.isEmpty else {

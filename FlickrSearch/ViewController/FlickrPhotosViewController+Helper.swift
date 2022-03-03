@@ -6,6 +6,14 @@ extension FlickrPhotosViewController {
     return searches[indexPath.section].searchResults[indexPath.row]
   }
   
+  func removePhoto(at indexPath: IndexPath){
+    searches[indexPath.section].searchResults.remove(at: indexPath.row)
+  }
+  
+  func insertPhoto(_ flickrPhoto: FlickrPhoto, at indexPath: IndexPath) {
+    searches[indexPath.section].searchResults.insert(flickrPhoto, at: indexPath.row)
+  }
+  
   func performLargeImageFetch (for indexPath: IndexPath, flickrphoto: FlickrPhoto, cell: FlickrPhotoCell) {
     cell.activityIndicator.startAnimating()
     
