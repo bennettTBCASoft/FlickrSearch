@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,35 +18,63 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eCH-yQ-guO">
                             <size key="itemSize" width="200" height="200"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="90"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrCell" id="hcn-aY-T7f" customClass="FlickrPhotoCell" customModule="FlickrSearch" customModuleProvider="target">
-                                <rect key="frame" x="87.5" y="0.0" width="200" height="200"/>
+                                <rect key="frame" x="87.5" y="90" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iww-UA-ZFk">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iww-UA-ZFk">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                         </imageView>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="HVi-Ye-oIv">
+                                            <rect key="frame" x="81.5" y="81.5" width="37" height="37"/>
+                                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                            <color key="color" systemColor="systemRedColor"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                 </view>
                                 <constraints>
+                                    <constraint firstItem="HVi-Ye-oIv" firstAttribute="centerX" secondItem="hcn-aY-T7f" secondAttribute="centerX" id="3Uq-PN-4rc"/>
                                     <constraint firstAttribute="bottom" secondItem="iww-UA-ZFk" secondAttribute="bottom" id="KvF-B1-JDp"/>
+                                    <constraint firstItem="HVi-Ye-oIv" firstAttribute="centerY" secondItem="hcn-aY-T7f" secondAttribute="centerY" id="Pjn-HM-bc9"/>
                                     <constraint firstItem="iww-UA-ZFk" firstAttribute="leading" secondItem="hcn-aY-T7f" secondAttribute="leading" id="R6q-4l-Wbk"/>
                                     <constraint firstAttribute="trailing" secondItem="iww-UA-ZFk" secondAttribute="trailing" id="alT-I1-CFW"/>
                                     <constraint firstItem="iww-UA-ZFk" firstAttribute="top" secondItem="hcn-aY-T7f" secondAttribute="top" id="vit-aD-lCd"/>
                                 </constraints>
                                 <size key="customSize" width="200" height="200"/>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="HVi-Ye-oIv" id="AxR-6B-BNN"/>
                                     <outlet property="imageView" destination="iww-UA-ZFk" id="guF-rV-cvC"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="FlickrPhotoHeaderView" id="dU1-9A-KwB" customClass="FlickrPhotoHeaderView" customModule="FlickrSearch" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTE-ny-NdC">
+                                    <rect key="frame" x="149.5" y="26" width="76" height="38.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                            <constraints>
+                                <constraint firstItem="ZTE-ny-NdC" firstAttribute="centerY" secondItem="dU1-9A-KwB" secondAttribute="centerY" id="HQ5-vR-mgh"/>
+                                <constraint firstItem="ZTE-ny-NdC" firstAttribute="centerX" secondItem="dU1-9A-KwB" secondAttribute="centerX" id="kZV-dS-GqA"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="titleLabel" destination="ZTE-ny-NdC" id="4uh-uI-fqB"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="0PT-Ri-zsh" id="n5N-jc-UeP"/>
                             <outlet property="delegate" destination="0PT-Ri-zsh" id="2iS-F4-Qro"/>
@@ -54,7 +83,7 @@
                     <navigationItem key="navigationItem" id="aYV-JS-gUK">
                         <nil key="title"/>
                         <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search                      " textAlignment="natural" minimumFontSize="17" id="sTT-Sc-0SH">
-                            <rect key="frame" x="109.5" y="5" width="156.5" height="34"/>
+                            <rect key="frame" x="8" y="5" width="310" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
@@ -62,6 +91,11 @@
                                 <outlet property="delegate" destination="0PT-Ri-zsh" id="ERL-Q3-sgf"/>
                             </connections>
                         </textField>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Cql-jf-54T">
+                            <connections>
+                                <action selector="shareButtonTapped:" destination="0PT-Ri-zsh" id="ws1-iN-dJc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qmd-oT-o3h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -87,4 +121,15 @@
             <point key="canvasLocation" x="-871.20000000000005" y="-80.50974512743629"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
