@@ -93,6 +93,7 @@ class FlickrPhotosViewController: UICollectionViewController {
   }
   
   
+  // 保存索引路徑變數（當用戶點擊到這個相片的Cell的indexPath）
   var largePhotoIndexPath: IndexPath? {
     didSet {
       var indexPaths:[IndexPath] = []
@@ -106,7 +107,7 @@ class FlickrPhotosViewController: UICollectionViewController {
       }
       
       collectionView.performBatchUpdates {
-        self.collectionView.reloadItems(at: indexPaths)
+        self.collectionView.reloadItems(at: indexPaths) //要同時reload兩個cell，當點到不同的cell，或是點兩次相同的cell
       } completion: { _ in
         if let largePhotoIndexPath = self.largePhotoIndexPath {
           self.collectionView.scrollToItem(at: largePhotoIndexPath, at: .centeredVertically, animated: true)
